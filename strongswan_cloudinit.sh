@@ -73,4 +73,5 @@ cat <<EOF >> /etc/strongswan/ipsec.secrets
 EOF
 strongswan restart
 touch ~opc/userdata.`date +%s`.finish
-strongswan status
+#strongswan status
+#tail -f /var/log/messages
