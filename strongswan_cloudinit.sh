@@ -30,17 +30,18 @@ echo 2 > /proc/sys/net/ipv4/conf/eth1/rp_filter
 echo 2 > /proc/sys/net/ipv4/conf/ens3/rp_filter
 echo 2 > /proc/sys/net/ipv4/conf/ens4/rp_filter
 sysctl -p
+
 iptables -P INPUT ACCEPT
 iptables -P OUTPUT ACCEPT
 iptables -P FORWARD ACCEPT
 iptables -F
+
 systemctl enable strongswan
 mv /etc/strongswan/ipsec.conf /etc/strongswan/ipsec.conf.bak
 cat <<EOF >> /etc/strongswan/ipsec.conf
 conn Azure
         authby=psk
         auto=start
-        pfs=yes
         left=192.168.240.3
         leftid=	1.2.3.4
         leftsubnet=192.168.240.0/24
@@ -53,15 +54,15 @@ conn Azure
 conn OCI
         authby=psk
         auto=start
-        pfs=yes
+        keyexchange=ikev2
         left=192.168.240.3
         leftid=	1.2.3.4
         leftsubnet=192.168.240.0/24
         right=5.4.3.2
         rightid=5.4.3.2
         rightsubnet=172.29.30.0/24
-        ike=aes256-sha1-modp1024
-        esp=aes256-sha1-modp1024
+        ike=aes256-sha384-modp1536
+        esp=aes256-sha1-modp1536
 EOF
 cat <<EOF >> /etc/strongswan/ipsec.secrets
 192.168.240.3 9.8.7.6 : PSK "baptisteAZ"
