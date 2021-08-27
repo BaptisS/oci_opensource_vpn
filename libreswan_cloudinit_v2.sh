@@ -48,8 +48,10 @@ leftsubnet=172.16.100.0/24      #OCI VCN IP address range in CIDR notation :
 right=152.67.xx.xx                    #On-premises VPN Public IP address :
 rightid=$right                   #Custom IKE IDentifier (Optional) :
 rightsubnet=10.90.10.0/24     #On-premises internal network IP address range in CIDR notation:
-P1props=aes256-sha384-modp1536   #Phase 1 proposals. Should be modified to match on-premises VPN endpoint configuration.
+P1props=aes_cbc256-sha2_384;modp1536   #Phase 1 proposals. Should be modified to match on-premises VPN endpoint configuration.
+P1life=28800s                   #Phase 1 (IKE) Lifetime
 P2props=aes256-sha1-modp1536     #Phase 2 proposals. Should be modified to match on-premises VPN endpoint configuration.
+P2life=3600s                    #Phase 2 (IPSEC) Lifetime
 PSK="'Cem6mIexuYuXQRIYnZ9jLue'"        #Pre-Shared Key
 
 ##### IPSEC Variables #####
@@ -70,10 +72,10 @@ conn ocitunnel1
         right=$right
         rightid=$rightid  
         rightsubnet=$rightsubnet 
-        ike=aes_cbc256-sha2_384;modp1536
-        phase2alg=aes_gcm256;modp1536
-        ikelifetime=28800s
-        salifetime=3600s
+        ike=$P1props
+        phase2alg=$P2props
+        ikelifetime=$P1life
+        salifetime=$P2life
 
 EOF
 cat <<EOF >> /etc/ipsec.d/oci_ipsec.secrets
