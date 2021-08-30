@@ -5,14 +5,14 @@ provider "oci" {
 }
     
 variable "tenancy_ocid" {
-  default = "ocid1.tenancy.oc1..aaaaaaaagwmwhlofsz3rx4d3glfaqxlim4ryintboyuashvnw32e3uqx4wia"
+  default = "ocid1.tenancy.oc1..aaaaaaaa"
 }
 variable "compartment_ocid" {
-  default = "ocid1.compartment.oc1..aaaaaaaa3osjq2qms77eivsrdgnfrbnv2sr67kurl6ed4dctyex42yiacjaq"
+  default = "ocid1.compartment.oc1..aaaaaaaa"
 }
 
 variable "ssh_public_key" {
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDv8JqmkIqS+VGBNfEj4/Ewi/X24f1hRdf2aHR0T6hCqKDJCOksQvs/xNjnhrVO5X2NRWxP74pNA9jUOAYDUHdSRgvdYn5eYhkl4GU9YCTE1SY3Ptt6UFyph6wmVdU66B6KIibWo58e46zsSJC1D7kCqMGRoIf7YRViRmytZseDfWvnLlRouqzIt1x3lYCUUagjgACJ8ow0LtyKME+Ss87IMJxSDML5fJTmNwFoV8lOuFes/ORRF9HyY2i3VyoyodDVlzU8bbaQ8GosPAVNySecOPnOGXQSMrmFb7Vna+JrysihFD4NJ6zwfsMr4R29JsATfaCBX7v/+IadS9tDXa7L ssh-key-2021-05-19"
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAA"
 }
 variable "region" {
   default = "uk-london-1"
@@ -229,5 +229,5 @@ variable "ipsec_vm_b_P2life" {
  default = "3600s"
 }
 variable "ipsec_vm_b_PSK" {
- default = "'Cem6mIexuYuXQRIYnZ9jLue'"
+ default = "'Cem6thxghfghfghfghxfgnZ9jLue'"
 }
